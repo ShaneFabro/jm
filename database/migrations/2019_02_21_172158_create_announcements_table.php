@@ -13,7 +13,7 @@ class CreateAnnouncementsTable extends Migration
      */
     public function up()
     {
-        Schema::create('Announcements', function (Blueprint $table) {
+        Schema::create('announcements', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->index()->unsigned();
             $table->integer('category_id')->index()->unsigned()->nullable();
