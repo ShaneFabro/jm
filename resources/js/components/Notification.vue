@@ -9,38 +9,40 @@
         <li>
             <p class="green">Notifications</p>
         </li>
-        <!-- <notification-item v-for></notification-item> -->
-        <!-- @forelse(auth()->user()->unreadNotifications as $notification)
-        @include('layouts.partials.submission')
-        @empty -->
-        <li>
-            <!-- <a href="#">
+        <li v-for="unreadNotification in unreadNotifications">
+            <a :href="'/counselor/evaluation/evaluate/' + unreadNotification.data.sub_id">
                 <span class="subject"></span>
-                <span class="message">No Notifications</span>
-            </a> -->
+                <span class="message">{{ unreadNotification.data.first_name }} {{ unreadNotification.data.last_name }} submitted a resume</span>
+            </a>
         </li>
-        <!-- @endforelse -->
     </ul>
     </li>
 </template>
 
 <script>
     export default {
-        props:['unreads','userid'],
+        props:[
+            'unreads',
+            'userid',
+        ],
         data(){
-            return{
-                unreadNotifications:this.unreads
+            return {
+                unreadNotifications: this.unreads,
             }
         },
         mounted() {
             console.log('Component mounted.');
-            Echo.private('App.User.${userid}')
-    .notification((notification) => {
-        console.log(notification.type);
+            Echo.private(`App.User.${this.userid}`)
+                .notification((notification) => {
+                    console.log(notification);
 
-        let newUnreadNotifications = {data:{thread:notification.thread,user:notification.user}};
-        this.unreadNotifications.push(newUnreadNotifications);
-    });
+                    let newUnreadNotifications = {
+                        data: {
+                            ...notification,
+                        }
+                    };
+                    this.unreadNotifications.unshift(newUnreadNotifications);
+                });
         }
     }
 </script>

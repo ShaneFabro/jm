@@ -1796,11 +1796,10 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -1833,16 +1832,13 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     console.log('Component mounted.');
-    Echo.private('App.User.${userid}').notification(function (notification) {
-      console.log(notification.type);
+    Echo.private("App.User.".concat(this.userid)).notification(function (notification) {
+      console.log(notification);
       var newUnreadNotifications = {
-        data: {
-          thread: notification.thread,
-          user: notification.user
-        }
+        data: _objectSpread({}, notification)
       };
 
-      _this.unreadNotifications.push(newUnreadNotifications);
+      _this.unreadNotifications.unshift(newUnreadNotifications);
     });
   }
 });
@@ -47106,7 +47102,43 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _vm._m(0)
+      _c(
+        "ul",
+        { staticClass: "dropdown-menu extended inbox" },
+        [
+          _c("div", { staticClass: "notify-arrow notify-arrow-green" }),
+          _vm._v(" "),
+          _vm._m(0),
+          _vm._v(" "),
+          _vm._l(_vm.unreadNotifications, function(unreadNotification) {
+            return _c("li", [
+              _c(
+                "a",
+                {
+                  attrs: {
+                    href:
+                      "/counselor/evaluation/evaluate/" +
+                      unreadNotification.data.sub_id
+                  }
+                },
+                [
+                  _c("span", { staticClass: "subject" }),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "message" }, [
+                    _vm._v(
+                      _vm._s(unreadNotification.data.first_name) +
+                        " " +
+                        _vm._s(unreadNotification.data.last_name) +
+                        " submitted a resume"
+                    )
+                  ])
+                ]
+              )
+            ])
+          })
+        ],
+        2
+      )
     ]
   )
 }
@@ -47115,12 +47147,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("ul", { staticClass: "dropdown-menu extended inbox" }, [
-      _c("div", { staticClass: "notify-arrow notify-arrow-green" }),
-      _vm._v(" "),
-      _c("li", [_c("p", { staticClass: "green" }, [_vm._v("Notifications")])]),
-      _vm._v(" "),
-      _c("li")
+    return _c("li", [
+      _c("p", { staticClass: "green" }, [_vm._v("Notifications")])
     ])
   }
 ]
@@ -59365,6 +59393,7 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   cluster: "ap1",
   encrypted: true
 });
+console.log("1e89edd29ccbb2d08cb4");
 
 /***/ }),
 
@@ -59524,8 +59553,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\FinalCapstoneddtuesday\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\FinalCapstoneddtuesday\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/dell/Projects/laravel-projects/jm/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/dell/Projects/laravel-projects/jm/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
